@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h2 style="line-height: 1; text-align: center;"></span> minutes</h2>
+<p style="line-height: 1; text-align: center;">Time swapped out for other tasks.</p>
+<br>
+<h2 style="line-height: 1; text-align: center;"><span id="js-points-earned"></span> points</h2>
+<p style="line-height: 1; text-align: center;">Total points scored by community.</p>
+
+<script>
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    var currentPointsSum, currentMinutesSaved;
+
+    var pointsEarnedDiv = document.getElementById('js-points-earned');
+    var minutesSavedDiv = document.getElementById('js-minutes-saved');
+
+    function updateStats () {
+      return fetch('https://healthygamer.herokuapp.com/api/swap_it/stats').then(function (res) {
+        return res.json();
+      }).then(function (r) {
+        if (r.points_sum !== currentPointsSum) {
+          pointsEarnedDiv.innerText = r.points_sum;
+         currentPointsSum = r.points_sum;
+        }
+        if (r.minutes_saved !== currentMinutesSaved) {
+          minutesSavedDiv.innerText = r.minutes_saved;
+          currentMinutesSaved = r.minutes_saved;
+        }
+      })
+    }
+     updateStats().then(function () {
+     setInterval(updateStats, 3000);
+  	});
+  });
+})();
+</script>
+
+</body>
+</html>

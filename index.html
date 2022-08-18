@@ -9,6 +9,20 @@
     font-style: normal;
     line-height: 1;
   }
+
+  b {
+    font-weight: 900 !important;
+  }
+
+  .pog {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  img {
+    margin-right: 10px;
+  }
   </style>
 <title>Swap It HG Stream Browser Source</title>
 </head>
@@ -43,7 +57,14 @@
     </script>
 
 
-<b><span id="js-minutes-saved"></span> minutes</b> swapped                <b><span id="js-points-earned"></span> points </b>scored
+<row class="pog">
+  <col class="unpog">
+    <img src="logo.png" width="50px">
+  </col>
+  <col>
+    <p><b><span id="js-minutes-saved"></span> minutes</b> swapped. <b><span id="js-points-earned"></span> points </b>scored.</p>
+  </col>
+</row>
 
 </body>
 </html>
